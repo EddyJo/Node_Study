@@ -8,7 +8,7 @@
 		"name": "betty"
 	},
 	"newuser": {
-		"password": "newpass",
-		"name": "charlie"
+		"password": "changepass",
+		"name": "david"
 	}
 }
