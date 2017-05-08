@@ -7,4 +7,9 @@
     </li>
   <% } %>
 </ul>
-Hey, this is index page
+
+<% if(username){ %>
+  <h2>Welcome! <%= username %> (name: <%= name %>)</h2>
+<% }else { %>
+  <h2>Please Login</h2>
+<% } %>
