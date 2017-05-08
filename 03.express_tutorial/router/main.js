@@ -88,6 +88,31 @@ module.exports = function(app, fs)
     });
   });
 
-  //DELET User
+  //DELETE User
+  app.delete('/deleteUser/:username', function(req, res) {
+    var result = { };
+    // LOAD DATA
+    fs.readFile( __dirname + '/../data/user.json', 'utf8', function(err, data) {
+      var users = JSON.parse(data);
 
+      // IF NOT FOUND
+      if(!users[req.params.username]) {
+        result['success'] = 0;
+        result['error'] = 'not found';
+        res.json(result);
+        return;
+      }
+
+      // DELETE FROM DATA
+      delete users[req.params.username];
+
+      //SAVE FILE
+      fs.writeFile( __dirname + '/../data/user.json',
+                  JSON.stringify(users, null, '\t'), 'utf8', function(err, data) {
+        result['success'] = 1;
+        res.json(result);
+        return;
+      });
+    });
+  });
 };
